@@ -171,7 +171,16 @@ public class Traversals {
    * @return true if the trees have the same shape, false otherwise
    */
   public static <T> boolean haveSameShape(TreeNode<T> nodeA, TreeNode<T> nodeB) {
-    return false;
+    if(nodeA == null && nodeB == null){
+      return true;
+    }
+
+    if(nodeA == null || nodeB == null){
+      return false;
+    }
+
+    return (nodeA == nodeB && haveSameShape(nodeA.left, nodeB.left) 
+    && haveSameShape(nodeA.right, nodeB.right));
   }
 
 
