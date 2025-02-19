@@ -167,7 +167,7 @@ public class Traversals {
     }
 
 
-    if(node.value < prevVal){
+    if(node.value <= prevVal){
       return false;
     }
 
@@ -175,8 +175,9 @@ public class Traversals {
       return true;
     }
 
-    return hasStrictlyIncreasingPathHelper(node.left, prevVal) 
-    || hasStrictlyIncreasingPathHelper(node.right, prevVal);
+    // Only either subtree has to have an increasing path to be true.
+    return hasStrictlyIncreasingPathHelper(node.left, node.value) 
+    || hasStrictlyIncreasingPathHelper(node.right, node.value);
     
   }
 
@@ -200,8 +201,8 @@ public class Traversals {
       return false;
     }
 
-    return (nodeA == nodeB && haveSameShape(nodeA.left, nodeB.left) 
-    && haveSameShape(nodeA.right, nodeB.right));
+    return haveSameShape(nodeA.left, nodeB.left) 
+    && haveSameShape(nodeA.right, nodeB.right);
   }
 
 
