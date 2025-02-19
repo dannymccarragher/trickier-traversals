@@ -92,6 +92,7 @@ public class Traversals {
     Queue<TreeNode<T>> queue = new LinkedList<>();
     
     if(node == null){
+      //this will simply return an empty
       return Collections.emptyList();
     }
 
@@ -121,8 +122,21 @@ public class Traversals {
    * @return the number of unique values in the tree, or 0 if the tree is null
    */
   public static int countDistinctValues(TreeNode<Integer> node) {
-    return 0;
+    if(node == null){
+      return 0;
+    }
+    Set<Integer> set = new HashSet<>();
+
+    if(!set.contains(node.value)){
+      set.add(node.value);
+    }
+
+    countDistinctValues(node.left);
+    countDistinctValues(node.right);
+
+    return set.size();
   }
+
 
   /**
    * Determines whether there is at least one root-to-leaf path in the tree
