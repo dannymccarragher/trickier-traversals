@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.sound.sampled.Line;
+
 public class Traversals {
 
   /**
@@ -86,7 +88,29 @@ public class Traversals {
    * @return a list of node values in a top-to-bottom order, or an empty list if the tree is null
    */
   public static <T> List<T> collectLevelOrderValues(TreeNode<T> node) {
-    return null;
+    List<T> values = new ArrayList<>();
+    Queue<TreeNode<T>> queue = new LinkedList<>();
+    
+    if(node == null){
+      return Collections.emptyList();
+    }
+
+    queue.add(node);
+
+    while(!queue.isEmpty()){
+      TreeNode<T> current = queue.poll();
+      
+      if(current == null){
+        continue;
+      }
+
+      values.add(current.value);
+      queue.add(current.left);
+      queue.add(current.right);
+      
+    }
+
+    return values;
   }
 
   /**
